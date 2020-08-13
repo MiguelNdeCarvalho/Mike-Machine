@@ -218,3 +218,21 @@ services:
     image: redis:6.0-alpine
     container_name: redis
     restart: unless-stopped
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - TZ=America/Chicago
+      - WEBPASSWORD=PASSWORD
+    volumes:
+      - ./etc-pihole/:/etc/pihole/
+      - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 80:80/tcp
+      - 443:443/tcp
+    restart: unless-stopped
