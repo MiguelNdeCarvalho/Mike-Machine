@@ -236,3 +236,12 @@ services:
       - 80:80/tcp
       - 443:443/tcp
     restart: unless-stopped
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    environment:
+      - API_KEY=xxxxxxx
+      - ZONE=example.com
+      - SUBDOMAIN=subdomain
+      - PROXIED=true
+    restart: unless-stopped
