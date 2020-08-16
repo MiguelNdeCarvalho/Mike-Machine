@@ -277,3 +277,25 @@ services:
     ports:
       - '80:80'
     restart: unless-stopped
+  bitwarden:
+    image: bitwardenrs/server-mysql
+    container_name: bitwarden
+    environment:
+      - DOMAIN=https://bw.domain.tld 
+      - ADMIN_TOKEN=PASS
+      - WEBSOCKET_ENABLED=true
+      - SIGNUPS_ALLOWED=false
+      - SMTP_HOST=<smtp.domain.tld>
+      - SMTP_FROM=<bitwarden@domain.tld>
+      - SMTP_PORT=587
+      - SMTP_SSL=true
+      - SMTP_USERNAME=<username>
+      - SMTP_PASSWORD=<password>
+      - SHOW_PASSWORD_HINT=false
+      - ENABLE_DB_WAL=false
+      - DATABASE_URL='mysql://<bitwarden_user>:<bitwarden_pw>@mysql/bitwarden'
+    ports:
+      - '80:80'
+    volumes:
+      - /bw-data/:/data/
+    restart: unless-stopped
