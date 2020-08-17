@@ -12,8 +12,6 @@ services:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
       - </path/to/tv>:/tv
-    ports:
-      - 6767:6767
     restart: unless-stopped
   deluge:
     image: linuxserver/deluge
@@ -38,9 +36,6 @@ services:
       - TZ=Europe/London
     volumes:
       - </path/to/appdata/config>:/config
-    ports:
-      - 80:80
-      - 443:443
     restart: unless-stopped
   jackett:
     image: linuxserver/jackett
@@ -54,8 +49,6 @@ services:
     volumes:
       - <path to data>:/config
       - <path to blackhole>:/downloads
-    ports:
-      - 9117:9117
     restart: unless-stopped
   swag:
     image: linuxserver/letsencrypt
@@ -96,8 +89,6 @@ services:
       - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
       - path_to_data:/config
-    ports:
-      - 3306:3306
     restart: unless-stopped
   nextcloud:
     image: linuxserver/nextcloud
@@ -109,8 +100,6 @@ services:
     volumes:
       - /path/to/appdata:/config
       - /path/to/data:/data
-    ports:
-      - 443:443
     restart: unless-stopped
   ombi:
     image: linuxserver/ombi
@@ -122,8 +111,6 @@ services:
       - BASE_URL=/ombi #optional
     volumes:
       - /path/to/appdata/config:/config
-    ports:
-      - 3579:3579
     restart: unless-stopped
   plex:
     image: linuxserver/plex
@@ -152,8 +139,6 @@ services:
       - /path/to/data:/config
       - /path/to/movies:/movies
       - /path/to/downloadclient-downloads:/downloads
-    ports:
-      - 7878:7878
     restart: unless-stopped
   sonarr:
     image: linuxserver/sonarr
@@ -167,8 +152,6 @@ services:
       - /path/to/data:/config
       - /path/to/tvseries:/tv
       - /path/to/downloadclient-downloads:/downloads
-    ports:
-      - 8989:8989
     restart: unless-stopped
   tautulli:
     image: linuxserver/tautulli
@@ -180,8 +163,6 @@ services:
     volumes:
       - <path to data>:/config
       - <path to plex logs>:/logs
-    ports:
-      - 8181:8181
     restart: unless-stopped
   wireguard:
     image: linuxserver/wireguard
@@ -233,8 +214,6 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
-      - 80:80/tcp
-      - 443:443/tcp
     restart: unless-stopped
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
@@ -250,9 +229,7 @@ services:
     container_name: netdata
     environment:
       - PGID=999
-    hostname: example.com # set to fqdn of host
-    ports:
-      - 19999:19999
+    hostname: example.com
     cap_add:
       - SYS_PTRACE
     security_opt:
@@ -265,8 +242,6 @@ services:
   portainer:
     image: portainer/portainer
     container_name: portainer
-    ports:
-      - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /path-to-data/:/data
@@ -274,8 +249,6 @@ services:
   onlyoffice:
     image: onlyoffice/documentserver
     container_name: onlyoffice
-    ports:
-      - '80:80'
     restart: unless-stopped
   bitwarden:
     image: bitwardenrs/server-mysql
@@ -294,8 +267,6 @@ services:
       - SHOW_PASSWORD_HINT=false
       - ENABLE_DB_WAL=false
       - DATABASE_URL='mysql://<bitwarden_user>:<bitwarden_pw>@mysql/bitwarden'
-    ports:
-      - '80:80'
     volumes:
       - /bw-data/:/data/
     restart: unless-stopped
@@ -311,6 +282,4 @@ services:
       - </path/to/appdata/config>:/config
       - </path/to/backups>:/backups
       - </path/to/source>:/source
-    ports:
-      - 8200:8200
     restart: unless-stopped
