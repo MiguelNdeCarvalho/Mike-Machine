@@ -7,7 +7,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
@@ -21,7 +20,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
       - DELUGE_LOGLEVEL=error #optional
     volumes:
       - /path/to/deluge/config:/config
@@ -120,7 +118,6 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - UMASK_SET=022 #optional
       - PLEX_CLAIM= #optional
     volumes:
       - /path/to/library:/config
@@ -134,7 +131,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
     volumes:
       - /path/to/data:/config
       - /path/to/movies:/movies
@@ -147,7 +143,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
     volumes:
       - /path/to/data:/config
       - /path/to/tvseries:/tv
