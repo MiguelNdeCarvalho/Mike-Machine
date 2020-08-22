@@ -11,6 +11,8 @@ services:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
       - </path/to/tv>:/tv
+    ports:
+      - 6767:6767
     restart: ${RESTART_POLICY}
   deluge:
     image: linuxserver/deluge
@@ -46,6 +48,8 @@ services:
     volumes:
       - <path to data>:/config
       - <path to blackhole>:/downloads
+    ports:
+      - 9117:9117
     restart: ${RESTART_POLICY}
   swag:
     image: linuxserver/swag
@@ -77,6 +81,8 @@ services:
       - TZ=${TZ}
     volumes:
       - path_to_data:/config
+    ports:
+      - 3306:3306
     restart: ${RESTART_POLICY}
   nextcloud:
     image: linuxserver/nextcloud
@@ -124,6 +130,8 @@ services:
       - /path/to/data:/config
       - /path/to/movies:/movies
       - /path/to/downloadclient-downloads:/downloads
+    ports:
+      - 7878:7878
     restart: ${RESTART_POLICY}
   sonarr:
     image: linuxserver/sonarr
@@ -136,6 +144,8 @@ services:
       - /path/to/data:/config
       - /path/to/tvseries:/tv
       - /path/to/downloadclient-downloads:/downloads
+    ports:
+      - 8989:8989
     restart: ${RESTART_POLICY}
   tautulli:
     image: linuxserver/tautulli
@@ -147,6 +157,8 @@ services:
     volumes:
       - <path to data>:/config
       - <path to plex logs>:/logs
+    ports:
+      - 8181:8181
     restart: ${RESTART_POLICY}
   wireguard:
     image: linuxserver/wireguard
@@ -198,6 +210,8 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
+      - 80:80/tcp
+      - 443:443/tcp
     restart: ${RESTART_POLICY}
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
@@ -214,6 +228,8 @@ services:
     environment:
       - PGID=${DOCKER_GID}
     hostname: netdata.${DOMAIN}
+    ports:
+      - 19999:19999
     cap_add:
       - SYS_PTRACE
     security_opt:
@@ -226,6 +242,8 @@ services:
   portainer:
     image: portainer/portainer
     container_name: portainer
+    ports:
+      - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /path-to-data/:/data
@@ -265,6 +283,8 @@ services:
       - </path/to/appdata/config>:/config
       - </path/to/backups>:/backups
       - </path/to/source>:/source
+    ports:
+      - 8200:8200
     restart: ${RESTART_POLICY}
   gitea:
     image: gitea/gitea
