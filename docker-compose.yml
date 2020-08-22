@@ -218,7 +218,7 @@ services:
     container_name: netdata
     environment:
       - PGID=${DOCKER_GID}
-    hostname: example.com
+    hostname: netdata.${DOMAIN}
     cap_add:
       - SYS_PTRACE
     security_opt:
