@@ -101,7 +101,6 @@ services:
       - PUID=${UID}
       - PGID=${GID}
       - TZ=${TZ}
-      - BASE_URL=/ombi #optional
     volumes:
       - /path/to/appdata/config:/config
     restart: unless-stopped
