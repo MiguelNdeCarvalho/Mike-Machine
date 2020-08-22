@@ -5,7 +5,7 @@ services:
     container_name: bazarr
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - </path/to/bazarr/config>:/config
@@ -18,7 +18,7 @@ services:
     network_mode: host
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - DELUGE_LOGLEVEL=error #optional
     volumes:
@@ -30,7 +30,7 @@ services:
     container_name: heimdall
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - </path/to/appdata/config>:/config
@@ -40,7 +40,7 @@ services:
     container_name: jackett
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - AUTO_UPDATE=true #optional
       - RUN_OPTS=<run options here> #optional
@@ -55,7 +55,7 @@ services:
       - NET_ADMIN
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - URL=yourdomain.url
       - SUBDOMAINS=www,
@@ -78,7 +78,7 @@ services:
     container_name: mariadb
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
       - TZ=Europe/London
       - MYSQL_DATABASE=USER_DB_NAME #optional
@@ -93,7 +93,7 @@ services:
     container_name: nextcloud
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - /path/to/appdata:/config
@@ -104,7 +104,7 @@ services:
     container_name: ombi
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - BASE_URL=/ombi #optional
     volumes:
@@ -116,7 +116,7 @@ services:
     network_mode: host
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - VERSION=docker
       - PLEX_CLAIM= #optional
     volumes:
@@ -129,7 +129,7 @@ services:
     container_name: radarr
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - /path/to/data:/config
@@ -141,7 +141,7 @@ services:
     container_name: sonarr
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - /path/to/data:/config
@@ -153,7 +153,7 @@ services:
     container_name: tautulli
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
     volumes:
       - <path to data>:/config
@@ -167,7 +167,7 @@ services:
       - SYS_MODULE
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - SERVERURL=wireguard.domain.com #optional
       - SERVERPORT=51820 #optional
@@ -270,7 +270,7 @@ services:
     container_name: duplicati
     environment:
       - PUID=${UID}
-      - PGID=1000
+      - PGID=${GID}
       - TZ=Europe/London
       - CLI_ARGS= #optional
     volumes:
