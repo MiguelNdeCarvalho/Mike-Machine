@@ -11,7 +11,7 @@ services:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
       - </path/to/tv>:/tv
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   deluge:
     image: linuxserver/deluge
     container_name: deluge
@@ -24,7 +24,7 @@ services:
     volumes:
       - /path/to/deluge/config:/config
       - /path/to/your/downloads:/downloads
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   heimdall:
     image: linuxserver/heimdall
     container_name: heimdall
@@ -34,7 +34,7 @@ services:
       - TZ=${TZ}
     volumes:
       - </path/to/appdata/config>:/config
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   jackett:
     image: linuxserver/jackett
     container_name: jackett
@@ -46,7 +46,7 @@ services:
     volumes:
       - <path to data>:/config
       - <path to blackhole>:/downloads
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   swag:
     image: linuxserver/swag
     container_name: swag
@@ -71,7 +71,7 @@ services:
     ports:
       - 443:443
       - 80:80 #optional
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   mariadb:
     image: linuxserver/mariadb
     container_name: mariadb
@@ -82,7 +82,7 @@ services:
       - TZ=${TZ}
     volumes:
       - path_to_data:/config
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   nextcloud:
     image: linuxserver/nextcloud
     container_name: nextcloud
@@ -93,7 +93,7 @@ services:
     volumes:
       - /path/to/appdata:/config
       - /path/to/data:/data
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   ombi:
     image: linuxserver/ombi
     container_name: ombi
@@ -103,7 +103,7 @@ services:
       - TZ=${TZ}
     volumes:
       - /path/to/appdata/config:/config
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   plex:
     image: linuxserver/plex
     container_name: plex
@@ -117,7 +117,7 @@ services:
       - /path/to/library:/config
       - /path/to/tvseries:/tv
       - /path/to/movies:/movies
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   radarr:
     image: linuxserver/radarr
     container_name: radarr
@@ -129,7 +129,7 @@ services:
       - /path/to/data:/config
       - /path/to/movies:/movies
       - /path/to/downloadclient-downloads:/downloads
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
@@ -141,7 +141,7 @@ services:
       - /path/to/data:/config
       - /path/to/tvseries:/tv
       - /path/to/downloadclient-downloads:/downloads
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   tautulli:
     image: linuxserver/tautulli
     container_name: tautulli
@@ -152,7 +152,7 @@ services:
     volumes:
       - <path to data>:/config
       - <path to plex logs>:/logs
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   wireguard:
     image: linuxserver/wireguard
     container_name: wireguard
@@ -175,7 +175,7 @@ services:
       - 51820:51820/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   homeassistant:
     image: homeassistant/home-assistant:stable
     container_name: homeassistant
@@ -183,11 +183,11 @@ services:
     volumes:
       - /PATH_TO_YOUR_CONFIG:/config
       - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   redis:
     image: redis:6.0-alpine
     container_name: redis
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
@@ -203,7 +203,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
     container_name: cloudflare-ddns
@@ -212,7 +212,7 @@ services:
       - ZONE=${DOMAIN}
       - SUBDOMAIN=${CLOUDFLARE_SUBDOMAIN}
       - PROXIED=${CLOUDFLARE_PROXIED}
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   netdata:
     image: netdata/netdata
     container_name: netdata
@@ -227,18 +227,18 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   portainer:
     image: portainer/portainer
     container_name: portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /path-to-data/:/data
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   onlyoffice:
     image: onlyoffice/documentserver
     container_name: onlyoffice
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   bitwarden:
     image: bitwardenrs/server-mysql
     container_name: bitwarden
@@ -258,7 +258,7 @@ services:
       - DATABASE_URL=${BW_DATABASE}
     volumes:
       - /bw-data/:/data/
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   duplicati:
     image: linuxserver/duplicati
     container_name: duplicati
@@ -270,7 +270,7 @@ services:
       - </path/to/appdata/config>:/config
       - </path/to/backups>:/backups
       - </path/to/source>:/source
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
   gitea:
     image: gitea/gitea:latest
     ports:
@@ -278,4 +278,4 @@ services:
       - "22:22"
     volumes:
       - ./data:/data
-    restart: always
+    restart: ${RESTART_POLICY}
