@@ -217,7 +217,7 @@ services:
     image: netdata/netdata
     container_name: netdata
     environment:
-      - PGID=999
+      - PGID=${DOCKER_GID}
     hostname: example.com
     cap_add:
       - SYS_PTRACE
