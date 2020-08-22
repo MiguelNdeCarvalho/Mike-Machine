@@ -271,3 +271,11 @@ services:
       - </path/to/backups>:/backups
       - </path/to/source>:/source
     restart: unless-stopped
+  gitea:
+    image: gitea/gitea:latest
+    ports:
+      - "3000:3000"
+      - "22:22"
+    volumes:
+      - ./data:/data
+    restart: always
