@@ -195,7 +195,7 @@ services:
       - NET_ADMIN
     environment:
       - TZ=${TZ}
-      - WEBPASSWORD=PASSWORD
+      - WEBPASSWORD=${PI_PASSWORD}
     volumes:
       - ./etc-pihole/:/etc/pihole/
       - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
