@@ -6,7 +6,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - </path/to/bazarr/config>:/config
       - </path/to/movies>:/movies
@@ -19,7 +19,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - DELUGE_LOGLEVEL=error #optional
     volumes:
       - /path/to/deluge/config:/config
@@ -31,7 +31,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - </path/to/appdata/config>:/config
     restart: unless-stopped
@@ -41,7 +41,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - AUTO_UPDATE=true #optional
       - RUN_OPTS=<run options here> #optional
     volumes:
@@ -56,7 +56,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - URL=yourdomain.url
       - SUBDOMAINS=www,
       - VALIDATION=http
@@ -80,7 +80,7 @@ services:
       - PUID=${UID}
       - PGID=${GID}
       - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
-      - TZ=Europe/London
+      - TZ=${TZ}
       - MYSQL_DATABASE=USER_DB_NAME #optional
       - MYSQL_USER=MYSQL_USER #optional
       - MYSQL_PASSWORD=DATABASE_PASSWORD #optional
@@ -94,7 +94,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - /path/to/appdata:/config
       - /path/to/data:/data
@@ -105,7 +105,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - BASE_URL=/ombi #optional
     volumes:
       - /path/to/appdata/config:/config
@@ -130,7 +130,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - /path/to/data:/config
       - /path/to/movies:/movies
@@ -142,7 +142,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - /path/to/data:/config
       - /path/to/tvseries:/tv
@@ -154,7 +154,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - <path to data>:/config
       - <path to plex logs>:/logs
@@ -168,7 +168,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - SERVERURL=wireguard.domain.com #optional
       - SERVERPORT=51820 #optional
       - PEERS=1 #optional
@@ -200,7 +200,7 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - TZ=America/Chicago
+      - TZ=${TZ}
       - WEBPASSWORD=PASSWORD
     volumes:
       - ./etc-pihole/:/etc/pihole/
@@ -271,7 +271,7 @@ services:
     environment:
       - PUID=${UID}
       - PGID=${GID}
-      - TZ=Europe/London
+      - TZ=${TZ}
       - CLI_ARGS= #optional
     volumes:
       - </path/to/appdata/config>:/config
