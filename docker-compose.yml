@@ -266,7 +266,6 @@ services:
       - PUID=${UID}
       - PGID=${GID}
       - TZ=${TZ}
-      - CLI_ARGS= #optional
     volumes:
       - </path/to/appdata/config>:/config
       - </path/to/backups>:/backups
