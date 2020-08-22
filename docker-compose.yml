@@ -267,7 +267,7 @@ services:
       - </path/to/source>:/source
     restart: ${RESTART_POLICY}
   gitea:
-    image: gitea/gitea:latest
+    image: gitea/gitea
     ports:
       - "3000:3000"
       - "22:22"
