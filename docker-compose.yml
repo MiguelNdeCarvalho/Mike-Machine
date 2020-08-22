@@ -208,10 +208,10 @@ services:
     image: oznu/cloudflare-ddns:latest
     container_name: cloudflare-ddns
     environment:
-      - API_KEY=xxxxxxx
-      - ZONE=example.com
-      - SUBDOMAIN=subdomain
-      - PROXIED=true
+      - API_KEY=${CLOUDFLARE_API}
+      - ZONE=${DOMAIN}
+      - SUBDOMAIN=${CLOUDFLARE_SUBDOMAIN}
+      - PROXIED=${CLOUDFLARE_PROXIED}
     restart: unless-stopped
   netdata:
     image: netdata/netdata
