@@ -57,20 +57,15 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
       - URL=${DOMAIN}
-      - SUBDOMAINS=www,
-      - VALIDATION=http
-      - DNSPLUGIN=cloudflare #optional
-      - PROPAGATION= #optional
-      - DUCKDNSTOKEN= #optional
-      - EMAIL= #optional
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS= #optional
-      - STAGING=false #optional
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare 
+      - EMAIL=${ADMIN_MAIL}
     volumes:
       - /path/to/appdata/config:/config
     ports:
       - 443:443
-      - 80:80 #optional
+      - 80:80
     restart: ${RESTART_POLICY}
   mariadb:
     image: linuxserver/mariadb
