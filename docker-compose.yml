@@ -48,7 +48,7 @@ services:
       - <path to blackhole>:/downloads
     restart: unless-stopped
   swag:
-    image: linuxserver/letsencrypt
+    image: linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
