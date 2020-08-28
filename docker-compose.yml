@@ -170,7 +170,7 @@ services:
       - PUID=${UID}
       - PGID=${GID}
       - TZ=${TZ}
-      - SERVERURL=wireguard.${DOMAIN}
+      - SERVERURL=wg.${DOMAIN}
       - SERVERPORT=51820
       - PEERS=${WIREGUARD_CLIENTS}
       - PEERDNS=${WIREGUARD_DNS}
