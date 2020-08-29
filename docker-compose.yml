@@ -291,8 +291,8 @@ services:
       - USER_UID=${USER_ID}
       - USER_GID=${GROUP_ID}
     ports:
-      - "3000:3000"
-      - "22:22"
+      - 3000:3000
+      - 22:22
     volumes:
       - ${CONFIGS_PATH}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
