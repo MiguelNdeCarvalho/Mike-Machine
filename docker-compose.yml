@@ -209,8 +209,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
-      - 80:80/tcp
-      - 443:443/tcp
+      - 81:80/tcp
     restart: ${RESTART_POLICY}
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
