@@ -288,6 +288,10 @@ services:
     restart: ${RESTART_POLICY}
   gitea:
     image: gitea/gitea
+    container_name: gitea
+    environment:
+      - USER_UID=${UID}
+      - USER_GID=${GID}
     ports:
       - "3000:3000"
       - "22:22"
