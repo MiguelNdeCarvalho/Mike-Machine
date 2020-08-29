@@ -296,5 +296,7 @@ services:
       - "3000:3000"
       - "22:22"
     volumes:
-      - ./data:/data
+      - ./gitea_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: ${RESTART_POLICY}
