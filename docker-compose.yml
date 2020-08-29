@@ -8,9 +8,9 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - </path/to/bazarr/config>:/config
-      - </path/to/movies>:/movies
-      - </path/to/tv>:/tv
+      - ${CONFIGS_PATH}/bazarr:/config
+      - ${MEDIA_PATH}/movies:/movies
+      - ${MEDIA_PATH}/tv:/tv
     ports:
       - 6767:6767
     restart: ${RESTART_POLICY}
@@ -24,8 +24,8 @@ services:
       - TZ=${TZ}
       - DELUGE_LOGLEVEL=error #optional
     volumes:
-      - /path/to/deluge/config:/config
-      - /path/to/your/downloads:/downloads
+      - ${CONFIGS_PATH}/deluge:/config
+      - ${MEDIA_PATH}/downloads:/downloads
     restart: ${RESTART_POLICY}
   heimdall:
     image: linuxserver/heimdall
@@ -35,7 +35,7 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - </path/to/appdata/config>:/config
+      - ${CONFIGS_PATH}/heimdall:/config
     restart: ${RESTART_POLICY}
   jackett:
     image: linuxserver/jackett
@@ -46,8 +46,7 @@ services:
       - TZ=${TZ}
       - AUTO_UPDATE=true
     volumes:
-      - <path to data>:/config
-      - <path to blackhole>:/downloads
+      - ${CONFIGS_PATH}/jackett:/config
     ports:
       - 9117:9117
     restart: ${RESTART_POLICY}
@@ -66,7 +65,7 @@ services:
       - DNSPLUGIN=cloudflare 
       - EMAIL=${ADMIN_MAIL}
     volumes:
-      - /path/to/appdata/config:/config
+      - ${CONFIGS_PATH}/swag:/config
     ports:
       - 443:443
       - 80:80
@@ -80,7 +79,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${ROOT_PW}
       - TZ=${TZ}
     volumes:
-      - path_to_data:/config
+      - ${CONFIGS_PATH}/mariadb:/config
     ports:
       - 3306:3306
     restart: ${RESTART_POLICY}
@@ -92,8 +91,8 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - /path/to/appdata:/config
-      - /path/to/data:/data
+      - ${CONFIGS_PATH}/nextcloud:/config
+      - ${DATA_PATH}/nextcloud_data:/data
     restart: ${RESTART_POLICY}
   ombi:
     image: linuxserver/ombi
@@ -103,7 +102,7 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - /path/to/appdata/config:/config
+      - ${CONFIGS_PATH}/ombi:/config
     restart: ${RESTART_POLICY}
   plex:
     image: linuxserver/plex
@@ -115,9 +114,9 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
-      - /path/to/library:/config
-      - /path/to/tvseries:/tv
-      - /path/to/movies:/movies
+      - ${CONFIGS_PATH}/plex:/config
+      - ${MEDIA_PATH}/tv:/tv
+      - ${MEDIA_PATH}/movies:/movies
     restart: ${RESTART_POLICY}
   radarr:
     image: linuxserver/radarr
@@ -127,9 +126,9 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - /path/to/data:/config
-      - /path/to/movies:/movies
-      - /path/to/downloadclient-downloads:/downloads
+      - ${CONFIGS_PATH}/radarr:/config
+      - ${MEDIA_PATH}/movies:/movies
+      - ${MEDIA_PATH}/downloads:/downloads
     ports:
       - 7878:7878
     restart: ${RESTART_POLICY}
@@ -141,9 +140,9 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - /path/to/data:/config
-      - /path/to/tvseries:/tv
-      - /path/to/downloadclient-downloads:/downloads
+      - ${CONFIGS_PATH}/sonarr:/config
+      - ${MEDIA_PATH}/tv:/tv
+      - ${MEDIA_PATH}/downloads:/downloads
     ports:
       - 8989:8989
     restart: ${RESTART_POLICY}
@@ -155,8 +154,8 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - <path to data>:/config
-      - <path to plex logs>:/logs
+      - ${CONFIGS_PATH}/plex:/config
+      - ${DATA_PATH}/plex_logs:/logs
     ports:
       - 8181:8181
     restart: ${RESTART_POLICY}
@@ -176,7 +175,7 @@ services:
       - PEERDNS=${WIREGUARD_DNS}
       - INTERNAL_SUBNET=10.13.13.0
     volumes:
-      - /path/to/appdata/config:/config
+      - ${CONFIGS_PATH}/wireguard:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
@@ -188,7 +187,7 @@ services:
     container_name: homeassistant
     network_mode: host
     volumes:
-      - /PATH_TO_YOUR_CONFIG:/config
+      - ${CONFIGS_PATH}/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
     restart: ${RESTART_POLICY}
   redis:
@@ -204,8 +203,8 @@ services:
       - TZ=${TZ}
       - WEBPASSWORD=${PI_PASSWORD}
     volumes:
-      - ./etc-pihole/:/etc/pihole/
-      - ./etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - ${CONFIGS_PATH}/pihole:/etc/pihole/
+      - ${CONFIGS_PATH}/dnsmasq.d:/etc/dnsmasq.d/
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -245,8 +244,8 @@ services:
     ports:
       - 9000:9000
     volumes:
+      - ${CONFIGS_PATH}/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
-      - /path-to-data/:/data
     restart: ${RESTART_POLICY}
   onlyoffice:
     image: onlyoffice/documentserver
@@ -270,7 +269,7 @@ services:
       - ENABLE_DB_WAL=false
       - DATABASE_URL=${BW_DATABASE}
     volumes:
-      - /bw-data/:/data/
+      - ${CONFIGS_PATH}/bitwarden:/data/
     restart: ${RESTART_POLICY}
   duplicati:
     image: linuxserver/duplicati
@@ -280,9 +279,8 @@ services:
       - PGID=${GID}
       - TZ=${TZ}
     volumes:
-      - </path/to/appdata/config>:/config
-      - </path/to/backups>:/backups
-      - </path/to/source>:/source
+      - ${CONFIGS_PATH}/duplicati:/config
+      - ${DATA_PATH}/backups:/backups
     ports:
       - 8200:8200
     restart: ${RESTART_POLICY}
@@ -296,7 +294,7 @@ services:
       - "3000:3000"
       - "22:22"
     volumes:
-      - ./gitea_data:/data
+      - ${CONFIGS_PATH}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     restart: ${RESTART_POLICY}
