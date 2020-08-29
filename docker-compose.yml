@@ -4,8 +4,8 @@ services:
     image: linuxserver/bazarr
     container_name: bazarr
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/bazarr:/config
@@ -19,8 +19,8 @@ services:
     container_name: deluge
     network_mode: host
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
       - DELUGE_LOGLEVEL=error #optional
     volumes:
@@ -31,8 +31,8 @@ services:
     image: linuxserver/heimdall
     container_name: heimdall
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/heimdall:/config
@@ -41,8 +41,8 @@ services:
     image: linuxserver/jackett
     container_name: jackett
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
       - AUTO_UPDATE=true
     volumes:
@@ -56,8 +56,8 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
       - URL=${DOMAIN}
       - SUBDOMAINS=wildcard
@@ -74,8 +74,8 @@ services:
     image: linuxserver/mariadb
     container_name: mariadb
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - MYSQL_ROOT_PASSWORD=${ROOT_PW}
       - TZ=${TZ}
     volumes:
@@ -87,8 +87,8 @@ services:
     image: linuxserver/nextcloud
     container_name: nextcloud
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/nextcloud:/config
@@ -98,8 +98,8 @@ services:
     image: linuxserver/ombi
     container_name: ombi
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/ombi:/config
@@ -109,8 +109,8 @@ services:
     container_name: plex
     network_mode: host
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
@@ -122,8 +122,8 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/radarr:/config
@@ -136,8 +136,8 @@ services:
     image: linuxserver/sonarr
     container_name: sonarr
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/sonarr:/config
@@ -150,8 +150,8 @@ services:
     image: linuxserver/tautulli
     container_name: tautulli
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/plex:/config
@@ -166,8 +166,8 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
       - SERVERURL=wg.${DOMAIN}
       - SERVERPORT=51820
@@ -275,8 +275,8 @@ services:
     image: linuxserver/duplicati
     container_name: duplicati
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/duplicati:/config
@@ -288,8 +288,8 @@ services:
     image: gitea/gitea
     container_name: gitea
     environment:
-      - USER_UID=${UID}
-      - USER_GID=${GID}
+      - USER_UID=${USER_ID}
+      - USER_GID=${GROUP_ID}
     ports:
       - "3000:3000"
       - "22:22"
