@@ -242,6 +242,7 @@ services:
     container_name: portainer
     ports:
       - 9000:9000
+      - 8000:8000
     volumes:
       - ${CONFIGS_PATH}/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
