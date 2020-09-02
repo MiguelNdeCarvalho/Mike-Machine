@@ -1,4 +1,9 @@
 version: "3.0"
+
+networks:
+  reverse:
+  db:
+
 services:
   bazarr:
     image: linuxserver/bazarr
@@ -36,6 +41,8 @@ services:
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/heimdall:/config
+    networks:
+      - reverse
     restart: ${RESTART_POLICY}
   jackett:
     image: linuxserver/jackett
@@ -69,6 +76,8 @@ services:
     ports:
       - 443:443
       - 80:80
+    networks:
+      - reverse
     restart: ${RESTART_POLICY}
   mariadb:
     image: linuxserver/mariadb
@@ -82,6 +91,8 @@ services:
       - ${CONFIGS_PATH}/mariadb:/config
     ports:
       - 3306:3306
+    networks:
+      - db
     restart: ${RESTART_POLICY}
   nextcloud:
     image: linuxserver/nextcloud
@@ -93,6 +104,9 @@ services:
     volumes:
       - ${CONFIGS_PATH}/nextcloud:/config
       - ${DATA_PATH}/nextcloud_data:/data
+    networks:
+      - reverse
+      - db
     restart: ${RESTART_POLICY}
   ombi:
     image: linuxserver/ombi
@@ -103,6 +117,8 @@ services:
       - TZ=${TZ}
     volumes:
       - ${CONFIGS_PATH}/ombi:/config
+    networks:
+      - reverse
     restart: ${RESTART_POLICY}
   plex:
     image: linuxserver/plex
@@ -250,6 +266,8 @@ services:
   onlyoffice:
     image: onlyoffice/documentserver
     container_name: onlyoffice
+    networks:
+      - reverse
     restart: ${RESTART_POLICY}
   bitwarden:
     image: bitwardenrs/server-mysql
@@ -270,6 +288,9 @@ services:
       - DATABASE_URL=${BW_DATABASE}
     volumes:
       - ${CONFIGS_PATH}/bitwarden:/data/
+    networks:
+      - reverse
+      - db
     restart: ${RESTART_POLICY}
   duplicati:
     image: linuxserver/duplicati
@@ -293,6 +314,9 @@ services:
     ports:
       - 3000:3000
       - 22:22
+    networks:
+      - reverse
+      - db
     volumes:
       - ${CONFIGS_PATH}/gitea:/data
       - /etc/timezone:/etc/timezone:ro
