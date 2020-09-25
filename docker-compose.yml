@@ -330,7 +330,7 @@ services:
       - 8080:8080
     restart: unless-stopped
   nodeexporter:
-    image: quay.io/prometheus/node-exporter:v1.0.1
+    image: quay.io/prometheus/node-exporter
     container_name: nodeexporter
     volumes:
       - /proc:/host/proc:ro
