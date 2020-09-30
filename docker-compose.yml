@@ -253,15 +253,18 @@ services:
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: ${RESTART_POLICY}
-  portainer:
-    image: portainer/portainer-ce
-    container_name: portainer
-    ports:
-      - 9000:9000
-      - 8000:8000
+  yatch:
+    image: selfhostedpro/yacht
+    container_name: yatch
+    environment:
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
+      - TZ=${TZ}
     volumes:
-      - ${CONFIGS_PATH}/portainer:/data
+      - ${CONFIGS_PATH}/yatch:/config
       - /var/run/docker.sock:/var/run/docker.sock
+    ports: 
+      - 8000:8000
     restart: ${RESTART_POLICY}
   onlyoffice:
     image: onlyoffice/documentserver
