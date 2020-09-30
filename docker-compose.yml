@@ -236,23 +236,6 @@ services:
       - SUBDOMAIN=${CLOUDFLARE_SUBDOMAIN}
       - PROXIED=${CLOUDFLARE_PROXIED}
     restart: ${RESTART_POLICY}
-  netdata:
-    image: netdata/netdata
-    container_name: netdata
-    environment:
-      - PGID=${DOCKER_GID}
-    hostname: netdata.${DOMAIN}
-    ports:
-      - 19999:19999
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    restart: ${RESTART_POLICY}
   yatch:
     image: selfhostedpro/yacht
     container_name: yatch
