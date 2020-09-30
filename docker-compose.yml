@@ -3,6 +3,7 @@ version: "3.0"
 networks:
   reverse:
   db:
+  media:
 
 services:
   bazarr:
@@ -16,6 +17,8 @@ services:
       - ${CONFIGS_PATH}/bazarr:/config
       - ${MEDIA_PATH}/movies:/movies
       - ${MEDIA_PATH}/tv:/tv
+    networks:
+      - media
     ports:
       - 6767:6767
     restart: ${RESTART_POLICY}
@@ -54,6 +57,8 @@ services:
       - AUTO_UPDATE=true
     volumes:
       - ${CONFIGS_PATH}/jackett:/config
+    networks:
+      - media
     ports:
       - 9117:9117
     restart: ${RESTART_POLICY}
@@ -118,6 +123,7 @@ services:
     volumes:
       - ${CONFIGS_PATH}/ombi:/config
     networks:
+      - media
       - reverse
     restart: ${RESTART_POLICY}
   plex:
@@ -145,6 +151,8 @@ services:
       - ${CONFIGS_PATH}/radarr:/config
       - ${MEDIA_PATH}/movies:/movies
       - ${MEDIA_PATH}/downloads:/downloads
+    networks:
+      - media
     ports:
       - 7878:7878
     restart: ${RESTART_POLICY}
@@ -159,6 +167,8 @@ services:
       - ${CONFIGS_PATH}/sonarr:/config
       - ${MEDIA_PATH}/tv:/tv
       - ${MEDIA_PATH}/downloads:/downloads
+    networks:
+      - media
     ports:
       - 8989:8989
     restart: ${RESTART_POLICY}
@@ -172,6 +182,8 @@ services:
     volumes:
       - ${CONFIGS_PATH}/plex:/config
       - ${DATA_PATH}/plex_logs:/logs
+    networks:
+      - media
     ports:
       - 8181:8181
     restart: ${RESTART_POLICY}
